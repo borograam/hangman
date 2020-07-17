@@ -1,0 +1,30 @@
+<computergame>
+    <game if="{state.word}" data-word="{ state.word }" data-attempts="10"></game>
+
+    <div class="buttons">
+        <button onclick="{ props.dataToMainPage }">to main page</button>
+        <button onclick="{ newGame }">new game</button>
+    </div>
+    <script>
+        import Game from './game.riot'
+        let randomWords = require('random-words')
+        export default {
+            components: {Game},
+            getRandomWord(){
+                while(true){
+                    let s = randomWords({maxLength: 10, exactly: 1, join: ''});
+                    if(s.length >= 5) return s;
+                }
+            },
+            onBeforeMount(props, state){
+                this.state.word = this.getRandomWord();
+            },
+            newGame(){
+                this.state.word = null;
+                this.update();
+                this.onBeforeMount();
+                this.update();
+            }
+        }
+    </script>
+</computergame>

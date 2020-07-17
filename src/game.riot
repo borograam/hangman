@@ -2,16 +2,17 @@
     <drawing data-step="{ 10 - state.attempts }" />
     <word data="{ state.word }" />
     <letters data-func="{ chooseLetter }" />
-    <div if="{ state.gameOver }" class="overlay">{ state.gameResult }</div>
+    <div if="{ state.gameOver }" class="overlay"><raw html={ state.gameResult }/></div>
 
     <script>
         import Letters from './letters.riot'
         import Drawing from './drawing.riot'
         import Word from './word.riot'
+        import Raw from './raw.riot'
         import './game.scss'
         export default {
             components: {
-                Drawing, Word, Letters
+                Drawing, Word, Letters, Raw
             },
             chooseLetter(char, cheat=false, update=true) {
                 if(this.state.word.filter(o => o.char === char).length > 0){
@@ -23,7 +24,10 @@
                     });
                     if(this.state.hiddenLetterNumber === 0) this.endGame("YOU WIN!");
                 } else if(!cheat) {
-                    if(--this.state.attempts === 0) this.endGame('GAME OVER');
+                    if(--this.state.attempts === 0) {
+                        let answer = this.state.word.reduce((a, b) => a + b.char, '');
+                        this.endGame(`GAME OVER<br>the right answer was ${answer}`);
+                    }
                 }
                 if(update) this.update();
             },

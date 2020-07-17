@@ -1,0 +1,40 @@
+<localgame>
+    <form if="{ !state.inGame }" onsubmit={ play }>
+        <label for="word">Type your word and call your opponent after pressing "play" button<br>
+        Please use only letters and spaces</label>
+        <input id="word" name="word" type="text" autocomplete="off" required pattern="[A-Za-z][A-Za-z\s]*">
+        <div class="buttons">
+            <input type="button" onclick="{ props.dataToMainPage }" value="back"/>
+            <input type="submit" value="play" />
+        </div>
+    </form>
+    <div if="{ state.inGame }">
+        <game data-word="{ state.word }" data-attempts="10"></game>
+        <div class="buttons">
+            <button onclick="{ props.dataToMainPage }">to main page</button>
+            <button onclick="{ newGame }">new game</button>
+        </div>
+    </div>
+
+    <script>
+        import './localGame.scss'
+        import Game from './game.riot'
+        export default {
+            components: {Game},
+            play(e){
+                e.preventDefault();
+                this.state.inGame = true;
+                this.state.word = e.target.word.value;
+                console.log(this.state);
+                this.update();
+            },
+            newGame(){
+                this.state.inGame = false;
+                this.update();
+            },
+            onBeforeMount(props, state){
+                this.state.inGame = false;
+            }
+        }
+    </script>
+</localgame>

@@ -1,0 +1,36 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .modes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+    .mode {
+      width: 240px;
+      height: 240px;
+      margin: 10px;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      cursor: pointer;
+
+      .icons {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      .description {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 16pt;
+      }
+    }
+  }
+}

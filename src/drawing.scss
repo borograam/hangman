@@ -9,6 +9,7 @@ drawing {
   height: 200px;
   border-bottom: 3px solid black;
   position: relative;
+  display: block;
 
   .step {
     background-color: $light;

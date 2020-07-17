@@ -1,8 +1,7 @@
+import 'fork-awesome/css/fork-awesome.css'
 import {mount, register} from 'riot'
-import Game from './game.riot'
-import Test from './test.riot'
+import Mainpage from './mainPage.riot'
 
-register('test', Test)
-register('game', Game)
+register('mainpage', Mainpage)
 
-mount('test, game')
+mount('mainpage')

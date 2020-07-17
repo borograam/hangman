@@ -1,0 +1,55 @@
+<mainpage>
+    <main if={ state.mode === 0 }>
+        <h1>HANGMAN</h1>
+        <drawing data-step="10"></drawing>
+        <div class="modes">
+            <div class="mode" onclick={ localGame }>
+                <div class="icons">
+                    <i class="fa fa-5x fa-user"/>
+                    <i class="fa fa-4x fa-arrows-h"/>
+                    <i class="fa fa-5x fa-user"/>
+                </div>
+                <div class="description">Play locally with another person</div>
+            </div>
+            <div class="mode" onclick={ computerGame }>
+                <div class="icons">
+                    <i class="fa fa-5x fa-user"/>
+                    <i class="fa fa-4x fa-arrows-h"/>
+                    <i class="fa fa-5x fa-laptop"/>
+                </div>
+                <div class="description">Play against the computer</div>
+            </div>
+        </div>
+    </main>
+
+    <localgame if="{ state.mode === 1 }" data-toMainPage="{ clear }"></localgame>
+
+    <computergame if="{ state.mode === 2 }" data-toMainPage="{ clear }"></computergame>
+
+    <script>
+        import Drawing from './drawing.riot'
+        import Localgame from './localGame.riot'
+        import Computergame from './computerGame.riot'
+        import './mainPage.scss'
+        export default {
+            components: {
+                Drawing, Localgame, Computergame
+            },
+            onBeforeMount(props, state){
+                this.state.mode = 0;
+            },
+            clear(){
+                this.state.mode = 0;
+                this.update();
+            },
+            localGame(){
+                this.state.mode = 1;
+                this.update();
+            },
+            computerGame(){
+                this.state.mode = 2;
+                this.update();
+            },
+        }
+    </script>
+</mainpage>

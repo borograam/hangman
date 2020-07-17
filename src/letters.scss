@@ -1,0 +1,26 @@
+letters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 220px;
+
+  span {
+    flex: 0 0 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gainsboro;
+    border-radius: 50%;
+    margin: 3px;
+    height: 25px;
+    opacity: .3;
+    transition: all ease-in .3s;
+  }
+  span.active {
+    opacity: 1;
+  }
+  span.active:hover {
+    background-color: gray;
+    color: white;
+  }
+}

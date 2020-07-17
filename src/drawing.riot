@@ -1,0 +1,20 @@
+<drawing>
+    <div each={item in Array(10)} class="step"></div>
+
+    <script>
+        import './drawing.scss'
+        export default {
+            setStep(n){
+                let steps = this.$$('.step');
+                for(let step of steps) step.classList.remove('active');
+                for(let i = 0; i < n; i++) steps[i].classList.add('active');
+            },
+            onMounted(props, state){
+                this.setStep(props.dataStep);
+            },
+            onUpdated(props, state){
+                this.setStep(props.dataStep);
+            }
+        }
+    </script>
+</drawing>

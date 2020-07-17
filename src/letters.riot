@@ -1,0 +1,24 @@
+<letters>
+    <span each={ (item, i) in state.alphabet }
+          data-key={ i }
+          class="{ item.active ? 'active' : null }"
+          onclick={ letterClick }>{ item.char }</span>
+
+    <script>
+        import './letters.scss'
+        export default {
+            onBeforeMount(props, state){
+                let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                this.state.alphabet = alphabet.split('').map(char => ({char, active: true}))
+            },
+            letterClick(e){
+                let obj = this.state.alphabet[e.target.dataset.key];
+                if(!obj.active) return;
+                obj.active = false;
+                e.target.classList.remove('active');
+                this.props.dataFunc(obj.char);
+
+            }
+        }
+    </script>
+</letters>

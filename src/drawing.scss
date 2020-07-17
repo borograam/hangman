@@ -1,0 +1,94 @@
+$light: whitesmoke;
+$dark: black;
+$foreground: 10;
+$middle: 9;
+$background: 8;
+
+drawing {
+  width: 170px;
+  height: 200px;
+  border-bottom: 3px solid black;
+  position: relative;
+
+  .step {
+    background-color: $light;
+    position: absolute;
+    z-index: $background;
+  }
+  .step.active {
+    background-color: $dark;
+  }
+  .step:nth-child(1){
+    width: 3px;
+    height: 200px;
+    left: 10px;
+    z-index: $foreground;
+  }
+  .step:nth-child(2){
+    width: 120px;
+    height: 3px;
+    left: 10px;
+    z-index: $foreground;
+  }
+  .step:nth-child(3){
+    width: 67px;
+    height: 3px;
+    transform: rotate(-45deg);
+    top: 24px;
+    left: 1px;
+  }
+  .step:nth-child(4){
+    width: 3px;
+    height: 40px;
+    left: 128px;
+  }
+  .step:nth-child(5){
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    left: 116px;
+    top: 40px;
+    border: 3px solid $light;
+    background-color: transparent;
+  }
+  .step:nth-child(5).active{
+    border: 3px solid $dark;
+    background-color: transparent;
+  }
+  .step:nth-child(6){
+    width: 3px;
+    height: 60px;
+    left: 128px;
+    top: 68px;
+    z-index: $foreground;
+  }
+  .step:nth-child(7){
+    width: 3px;
+    height: 31px;
+    left: 120px;
+    top: 125px;
+    transform: rotate(30deg);
+    z-index: $middle;
+  }
+  .step:nth-child(8){
+    width: 3px;
+    height: 31px;
+    left: 136px;
+    top: 125px;
+    transform: rotate(-30deg);
+  }
+  .step:nth-child(9) {
+    width: 31px;
+    height: 3px;
+    left: 100px;
+    top: 79px;
+    transform: rotate(20deg);
+  }
+  .step:nth-child(10) {
+    width: 31px;
+    height: 3px;
+    left: 129px;
+    top: 79px;
+    transform: rotate(-20deg);
+  }
+}

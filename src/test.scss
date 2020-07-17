@@ -1,0 +1,21 @@
+#test-div {
+  width: 200px;
+  height: 200px;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+  cursor: pointer;
+  border-radius: 50%;
+
+  span {
+    transition: all ease .5s;
+  }
+}
+
+#test-div:hover {
+  span {
+    transform: scale(1.2);
+  }
+}

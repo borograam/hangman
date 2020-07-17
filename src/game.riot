@@ -1,0 +1,49 @@
+<game>
+    <drawing data-step="{ 10 - state.attempts }" />
+    <word data="{ state.word }" />
+    <letters data-func="{ chooseLetter }" />
+    <div if="{ state.gameOver }" class="overlay">{ state.gameResult }</div>
+
+    <script>
+        import Letters from './letters.riot'
+        import Drawing from './drawing.riot'
+        import Word from './word.riot'
+        import './game.scss'
+        export default {
+            components: {
+                Drawing, Word, Letters
+            },
+            chooseLetter(char, cheat=false, update=true) {
+                if(this.state.word.filter(o => o.char === char).length > 0){
+                    this.state.word.forEach(o => {
+                        if(o.char === char) {
+                            o.show = true;
+                            this.state.hiddenLetterNumber--;
+                        }
+                    });
+                    if(this.state.hiddenLetterNumber === 0) this.endGame("YOU WIN!");
+                } else if(!cheat) {
+                    if(--this.state.attempts === 0) this.endGame('GAME OVER');
+                }
+                if(update) this.update();
+            },
+            endGame(result){
+                this.state.gameOver = true;
+                this.state.gameResult = result;
+            },
+            onBeforeMount(props, state) {
+                this.state.attempts = +props.dataAttempts || 10;
+                if(this.state.attempts <= 0) this.state.attempts = 1;
+                else if(this.state.attempts > 10) this.state.attempts = 10;
+
+                let s = props.dataWord.toUpperCase().trim().replace(/\s+/g, ' ');
+                this.state.word = s.split('').map(char => ({char, show: false}));
+
+                this.state.hiddenLetterNumber = this.state.word.length;
+                this.chooseLetter(' ', true, false);
+
+                this.state.gameOver = false;
+            },
+        }
+    </script>
+</game>

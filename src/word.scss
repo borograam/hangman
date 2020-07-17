@@ -1,0 +1,20 @@
+word {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+
+  span {
+    flex: 0 0 20px;
+    height: 20px;
+    border-bottom: 2px solid black;
+    margin: 0 3px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  span.space {
+    border-bottom: unset;
+  }
+}
